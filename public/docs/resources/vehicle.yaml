@@ -1,0 +1,292 @@
+paths:
+
+  in-fleet:
+    post:
+      tags:
+        - 'Vehicles'
+      summary: 'In Fleet A Vehicle'
+      description: ''
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/schemas/InFeet'
+      responses:
+        201:
+          description: 'Resource created successfully'
+        400:
+          $ref: '../../swagger.yaml/#/components/responses/Error400'
+        401:
+          $ref: '../../swagger.yaml/#/components/responses/Error401'
+        404:
+          $ref: '../../swagger.yaml/#/components/responses/Error404'
+        500:
+          $ref: '../../swagger.yaml/#/components/responses/Error500'
+
+  install:
+    post:
+      tags:
+        - 'Vehicles'
+      summary: 'Install A Vehicle'
+      description: ''
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/schemas/Install'
+      responses:
+        201:
+          description: 'Resource created successfully'
+        400:
+          $ref: '../../swagger.yaml/#/components/responses/Error400'
+        401:
+          $ref: '../../swagger.yaml/#/components/responses/Error401'
+        404:
+          $ref: '../../swagger.yaml/#/components/responses/Error404'
+        500:
+          $ref: '../../swagger.yaml/#/components/responses/Error500'
+
+  update-battery:
+    post:
+      tags:
+        - 'Vehicles'
+      summary: 'Updates the battery level of the vehicle'
+      description: ''
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/schemas/UpdateBattery'
+      responses:
+        201:
+          description: 'Resource created successfully'
+        400:
+          $ref: '../../swagger.yaml/#/components/responses/Error400'
+        401:
+          $ref: '../../swagger.yaml/#/components/responses/Error401'
+        404:
+          $ref: '../../swagger.yaml/#/components/responses/Error404'
+        500:
+          $ref: '../../swagger.yaml/#/components/responses/Error500'
+
+  update-fuel:
+    post:
+      tags:
+        - 'Vehicles'
+      summary: 'Updates the fuel of the vehicle'
+      description: ''
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/schemas/UpdateFuel'
+      responses:
+        201:
+          description: 'Resource created successfully'
+        400:
+          $ref: '../../swagger.yaml/#/components/responses/Error400'
+        401:
+          $ref: '../../swagger.yaml/#/components/responses/Error401'
+        404:
+          $ref: '../../swagger.yaml/#/components/responses/Error404'
+        500:
+          $ref: '../../swagger.yaml/#/components/responses/Error500'
+
+  update-mileage:
+    post:
+      tags:
+        - 'Vehicles'
+      summary: 'Updates the mileage of the vehicle'
+      description: ''
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/schemas/UpdateMileage'
+      responses:
+        201:
+          description: 'Resource created successfully'
+        400:
+          $ref: '../../swagger.yaml/#/components/responses/Error400'
+        401:
+          $ref: '../../swagger.yaml/#/components/responses/Error401'
+        404:
+          $ref: '../../swagger.yaml/#/components/responses/Error404'
+        500:
+          $ref: '../../swagger.yaml/#/components/responses/Error500'
+
+  details:
+    post:
+      tags:
+        - 'Vehicles'
+      summary: 'Gets the details of a vehicle'
+      description: ''
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/schemas/Details'
+      responses:
+        200:
+          description: 'Valid response'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - chassis_nbr
+                  - license_plate
+                  - brand
+                  - category
+                  - in_fleet_date
+                  - device_serial_number
+                  - fuel_level
+                  - current_mileage
+                properties:
+                  chassis_number:
+                    type: string
+                    description: 'The chassis number of the vehicle'
+                    example: '01234567890123456'
+                  licence_plate:
+                    type: string
+                    description: 'The licence plate of the vehicle'
+                    example: ''
+                  brand:
+                    type: string
+                    description: 'The brand of the vehicle'
+                    example: ''
+                  category:
+                    type: string
+                    description: 'The category of the vehicle'
+                    example: ''
+                  in_fleet_date:
+                    type: string
+                    description: 'The in fleet date of the vehicle'
+                    example: '2014-11-12T11:45:26.371Z'
+                  device_serial_number:
+                    type: string
+                    description: 'The device serial number of the vehicle'
+                    example: 'abc'
+                  battery_level:
+                    type: integer
+                    description: 'The battery level of the vehicle'
+                    example: 75
+                  fuel_level:
+                    type: integer
+                    description: 'The fuel level of the vehicle'
+                    example: 75
+                  current_mileage:
+                    type: integer
+                    description: 'The mileage of the vehicle'
+                    example: 75
+
+        400:
+          $ref: '../../swagger.yaml/#/components/responses/Error400'
+        401:
+          $ref: '../../swagger.yaml/#/components/responses/Error401'
+        404:
+          $ref: '../../swagger.yaml/#/components/responses/Error404'
+        500:
+          $ref: '../../swagger.yaml/#/components/responses/Error500'
+
+schemas:
+
+  InFeet:
+    type: object
+    required:
+      - in_fleet_date
+      - chassis_number
+    properties:
+      in_fleet_date:
+        type: string
+        description: 'The date to in fleet the vehicle'
+        example: '2014-11-12T11:45:26.371Z'
+      chassis_number:
+        type: string
+        description: 'The chassis number of the vehicle'
+        example: '01234567890123456'
+
+  Install:
+    type: object
+    required:
+      - device_serial_number
+      - chassis_number
+    properties:
+      device_serial_number:
+        type: string
+        description: 'The device serial number of the vehicle'
+        example: 'abc'
+      chassis_number:
+        type: string
+        description: 'The chassis number of the vehicle'
+        example: '01234567890123456'
+
+  UpdateBattery:
+    type: object
+    required:
+      - device_serial_number
+      - battery
+    properties:
+      device_serial_number:
+        type: string
+        description: 'The device serial number of the vehicle'
+        example: 'abc'
+      battery:
+        type: integer
+        description: 'The battery level of the vehicle'
+        example: 75
+
+  UpdateFuel:
+    type: object
+    required:
+      - device_serial_number
+      - fuel
+      - update_type
+    properties:
+      device_serial_number:
+        type: string
+        description: 'The device serial number of the vehicle'
+        example: 'abc'
+      fuel:
+        type: integer
+        description: 'The fuel of the vehicle'
+        example: 75
+      update_type:
+        type: string
+        description: 'Update type, increment or decrement'
+        example: 'increment'
+        enum:
+          - 'increment'
+          - 'decrement'
+
+
+  UpdateMileage:
+    type: object
+    required:
+      - device_serial_number
+      - mileage
+    properties:
+      device_serial_number:
+        type: string
+        description: 'The device serial number of the vehicle'
+        example: 'abc'
+      mileage:
+        type: integer
+        description: 'The mileage of the vehicle'
+        example: 75
+
+  Details:
+    type: object
+    required:
+      - chassis_number
+    properties:
+      chassis_number:
+        type: string
+        description: 'The chassis number of the vehicle'
+        example: '01234567890123456'

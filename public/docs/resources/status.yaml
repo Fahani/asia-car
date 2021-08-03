@@ -1,0 +1,23 @@
+paths:
+  detail:
+    get:
+      tags:
+        - 'Status'
+      summary: 'Shows the status of the API'
+      description: ''
+      responses:
+        200:
+          description: 'Valid response'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: 'ok'
+        500:
+          $ref: '../../swagger.yaml/#/components/responses/Error500'
